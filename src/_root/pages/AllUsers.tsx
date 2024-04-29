@@ -1,37 +1,33 @@
-import Loader from "@/components/shared/Loader";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { Loader, UserCard } from "@/components/shared";
 import { useGetUsers } from "@/lib/react-query/queriesAndMutations";
-import { Link } from "react-router-dom";
 
 const AllUsers = () => {
-  const { data: users, isLoading, isError: isErrorCreators } = useGetUsers();
+  const { toast } = useToast();
+
+  const { data: creators, isLoading, isError: isErrorCreators } = useGetUsers();
+
+  if (isErrorCreators) {
+    toast({ title: "Something went wrong." });
+    
+    return;
+  }
 
   return (
     <div className="common-container">
-
       <div className="user-container">
-      <h2 className="h3-bold md-h2-bold w-full"> All Users</h2>
-        <ul className="user-grid">
-          {users?.documents.map((user) => (
-            <li key={user.$id}>
-              <Link to={`/profile/${user.$id}`} className="user-card">
-                <img
-                  src={user.ImageUrl}
-                  alt="user"
-                  className="rounded-full w-14 h-14 "
-                />
-                
-                <p>{user.name}</p>
-                <p>@{user.username}</p>
-      
-
-              <Button type="button" className="shad-button_primary">
-                Follow
-              </Button>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <h2 className="h3-bold md:h2-bold text-left w-full">All Users</h2>
+        {isLoading && !creators ? (
+          <Loader />
+        ) : (
+          <ul className="user-grid">
+            {creators?.documents.map((creator) => (
+              <li key={creator?.$id} className="flex-1 min-w-[200px] w-full  ">
+                <UserCard user={creator} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
