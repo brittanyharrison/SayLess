@@ -1,6 +1,6 @@
 {
   "name": "sayless",
-  "private": false,
+  "homepage": "https://say-less-delta.vercel.app/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
