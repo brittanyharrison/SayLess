@@ -1,7 +1,6 @@
 {
   "name": "sayless",
-  "proxy": "https://api.appwrite.io/v1",
-  "private": false,
+  "homepage": "https://say-less-pi.vercel.app/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
