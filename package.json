@@ -1,6 +1,6 @@
 {
   "name": "sayless",
-  "proxy" "https://api.appwrite.io/v1",
+  "proxy": "https://api.appwrite.io/v1",
   "private": false,
   "version": "0.0.0",
   "type": "module",
